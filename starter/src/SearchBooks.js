@@ -1,5 +1,9 @@
+import {useState} from 'react'
+
 const SearchBooks = ()=> {
 
+    const [query, setquery] = useState('');
+    
     return (
         <div className="search-books">
           <div className="search-books-bar">
@@ -12,6 +16,8 @@ const SearchBooks = ()=> {
               <input
                 type="text"
                 placeholder="Search by title, author, or ISBN"
+                value={query}
+                onChange={(e) => setquery(e.target.value)}
               />
             </div>
           </div>
