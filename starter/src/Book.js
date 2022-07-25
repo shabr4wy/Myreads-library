@@ -1,5 +1,20 @@
-const Book = ({previewLink, title, authors}) => {
-    
+import { useState } from "react";
+
+const Book = ({coverImage, title, authors, id, currentShelf, updateBooksLibrary}) => {
+
+
+    const [selectedShelf, setSelectedShelf] = useState('moveTo')
+    const hanndleChange = (selectedShelf) => {
+        setSelectedShelf(selectedShelf);
+        updateBooksLibrary(selectedShelf,{
+            title: title,
+            authors: authors,
+            coverImage: coverImage,
+            id: id,
+            currentShelf :selectedShelf,
+        })
+    }
+
     return (
         <div className="book">
             <div className="book-top">
@@ -8,19 +23,22 @@ const Book = ({previewLink, title, authors}) => {
                 style={{
                     width: 128,
                     height: 174,
-                    backgroundImage: `url(${previewLink})` 
+                    backgroundImage: `url(${coverImage})` 
                 }}
                 ></div>
                 <div className="book-shelf-changer">
-                <select>
-                    <option value="none" disabled>
+                <select
+                        value={currentShelf ? currentShelf : selectedShelf}
+                        onChange={e => hanndleChange(e.target.value)}
+                    >
+                    <option value="moveTo" disabled>
                     Move to...
                     </option>
-                    <option value="currentlyReading">
+                    <option value="currentlyReadingBooks">
                     Currently Reading
                     </option>
-                    <option value="wantToRead">Want to Read</option>
-                    <option value="read">Read</option>
+                    <option value="wantsToReadBooks">Want to Read</option>
+                    <option value="readBooks">Read</option>
                     <option value="none">None</option>
                 </select>
                 </div>
@@ -28,7 +46,7 @@ const Book = ({previewLink, title, authors}) => {
             <div className="book-title">
                 {title}
             </div>
-            <div className="book-authors">{authors.join(', ')}</div>
+            <div className="book-authors">{authors}</div>
         </div>
     )
 }
