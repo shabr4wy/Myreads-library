@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import Book from './Book';
 import * as bookAPI from './BooksAPI'
 
-const SearchBooks = ({updateBooksLibrary})=> {
+const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, updateBooksLibrary})=> {
 
     const [query, setquery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -16,6 +16,32 @@ const SearchBooks = ({updateBooksLibrary})=> {
         search();
     }, [query])
 
+
+    let currentShelf;
+
+    const doesItExistsInCurrentlyReadingBooks = (searchedBook) => {
+      currentlyReadingBooks.forEach((currentlyReadingBook)=> {
+        if (searchedBook.id === currentlyReadingBook.id){
+           currentShelf = 'currentlyReadingBooks';  
+        }else{currentShelf = undefined}
+      })
+    }
+
+    const doesItExistsInWantsToReadBooks = (searchedBook) => {
+      wantsToReadBooks.forEach((wantsToReadBook)=> {
+        if (searchedBook.id === wantsToReadBook.id){
+           currentShelf = 'wantsToReadBooks';
+        }
+      })
+    }
+
+    const doesItExistsInReadBooks = (searchedBook) => {
+      readBooks.forEach((readBook)=> {
+        if (searchedBook.id === readBook.id){
+           currentShelf = 'readBooks';
+        }
+      })
+    }
 
     return (
         <div className="search-books">
@@ -37,15 +63,22 @@ const SearchBooks = ({updateBooksLibrary})=> {
           <div className="search-books-results">
           <ol className="books-grid">
             {
-                searchResults && searchResults.map((book)=> (
+                searchResults && searchResults.map((book)=> {
+                  doesItExistsInCurrentlyReadingBooks(book);
+                  doesItExistsInWantsToReadBooks(book);
+                  doesItExistsInReadBooks(book);
+                  return(
                     <li key={book.id}>
-                        <Book previewLink={book.imageLinks.smallThumbnail}
-                              title={book.title}
+                        <Book title={book.title}
                               authors={book.authors}  
-                              updateBooksLibrary={updateBooksLibrary}   
-                        />
+                              coverImage={book.imageLinks.smallThumbnail}
+                              id={book.id}
+                              currentShelf={currentShelf}
+                              updateBooksLibrary={updateBooksLibrary}
+                          />
                     </li>
-                ))
+                  )
+                })
             }
           </ol>
           </div>
