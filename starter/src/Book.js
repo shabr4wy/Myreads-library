@@ -18,14 +18,12 @@ const Book = ({coverImage, title, authors, id, currentShelf, updateBooksLibrary}
     return (
         <div className="book">
             <div className="book-top">
-                <div
-                className="book-cover"
-                style={{
-                    width: 128,
-                    height: 174,
-                    backgroundImage: `url(${coverImage})` 
-                }}
-                ></div>
+                <div className="book-cover">
+                    <img src={coverImage}
+                         width="128"
+                         height="192"
+                    />
+                </div>
                 <div className="book-shelf-changer">
                 <select
                         value={currentShelf ? currentShelf : selectedShelf}
