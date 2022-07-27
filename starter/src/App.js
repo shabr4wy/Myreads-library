@@ -11,10 +11,30 @@ function App(){
   const [wantsToReadBooks, setWantsToReadBooks] = useState([]);
   const [readBooks, setReadBooks] = useState([]);
 
+  let booksFromServer ={
+    'currentlyReading' : [],
+    'wantToRead' : [],
+    'read' : [],
+  }; 
+
   useEffect (()=> {
     const getAll = async ()=> {
       const res = await BooksAPI.getAll();
-      console.log(res)
+      
+      res.forEach(book => {
+        if (book.shelf === 'currentlyReading'){
+          booksFromServer.currentlyReading.push(book)
+        }
+        else if (book.shelf === 'wantToRead'){
+          booksFromServer.wantToRead.push(book)
+        }
+        else if (book.shelf === 'read'){
+          booksFromServer.read.push(book)
+        }
+      });
+      setCurrentlyReadingBooks([...booksFromServer.currentlyReading])
+      setWantsToReadBooks([...booksFromServer.wantToRead])
+      setReadBooks([...booksFromServer.read])
     }
     getAll();
   }, [])
@@ -57,8 +77,8 @@ function App(){
 
   return (
     <div>
-      {/* <BooksLibrary currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/> */}
-      <SearchBooks updateBooksLibrary={updateBooksLibrary} currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks}/>
+      <BooksLibrary currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/>
+      {/* <SearchBooks updateBooksLibrary={updateBooksLibrary} currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks}/> */}
     </div>
   )
 }
