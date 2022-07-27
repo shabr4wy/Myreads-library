@@ -41,6 +41,8 @@ function App(){
 
   const updateBooksLibrary = (shelf, selectedShelf, book) => {
 
+    BooksAPI.update(book , selectedShelf)
+
     removeBookFromPreviousSection(shelf, book)
 
     if (selectedShelf === 'currentlyReading'){
