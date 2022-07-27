@@ -17,20 +17,20 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
   }, [query])
 
 
-  let currentShelf;
+  let shelf;
 
   const doesItExistsInCurrentlyReadingBooks = (searchedBook) => {
     currentlyReadingBooks.forEach((currentlyReadingBook)=> {
       if (searchedBook.id === currentlyReadingBook.id){
-          currentShelf = 'currentlyReadingBooks';  
-      }else{currentShelf = undefined}
+          shelf = 'currentlyReading';  
+      }else{shelf = undefined}
     })
   }
 
   const doesItExistsInWantsToReadBooks = (searchedBook) => {
     wantsToReadBooks.forEach((wantsToReadBook)=> {
       if (searchedBook.id === wantsToReadBook.id){
-          currentShelf = 'wantsToReadBooks';
+          shelf = 'wantToRead';
       }
     })
   }
@@ -38,7 +38,7 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
   const doesItExistsInReadBooks = (searchedBook) => {
     readBooks.forEach((readBook)=> {
       if (searchedBook.id === readBook.id){
-          currentShelf = 'readBooks';
+          shelf = 'read';
       }
     })
   }
@@ -67,13 +67,10 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
               doesItExistsInCurrentlyReadingBooks(book);
               doesItExistsInWantsToReadBooks(book);
               doesItExistsInReadBooks(book);
+              book.shelf = shelf;
               return(
                 <li key={book.id}>
-                  <Book title={book.title}
-                        authors={book.authors} 
-                        coverImage={book.imageLinks ? book.imageLinks.smallThumbnail : undefined}
-                        id={book.id}
-                        currentShelf={currentShelf}
+                  <Book book={book}
                         updateBooksLibrary={updateBooksLibrary}
                   />
                 </li>

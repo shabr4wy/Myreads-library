@@ -9,7 +9,7 @@ function App(){
 
   const [currentlyReadingBooks, setCurrentlyReadingBooks] = useState([]);
   const [wantsToReadBooks, setWantsToReadBooks] = useState([]);
-  const [readBooks, setReadBokks] = useState([]);
+  const [readBooks, setReadBooks] = useState([]);
 
   useEffect (()=> {
     const getAll = async ()=> {
@@ -19,43 +19,46 @@ function App(){
     getAll();
   }, [])
 
-  const updateBooksLibrary = (currentShelf, selectedShelf, book) => {
+  const updateBooksLibrary = (shelf, selectedShelf, book) => {
 
-    removeBookFromPreviousSection(currentShelf, book)
+    removeBookFromPreviousSection(shelf, book)
 
-    if (selectedShelf === 'currentlyReadingBooks'){
+    if (selectedShelf === 'currentlyReading'){
+      book.shelf = selectedShelf;
       setCurrentlyReadingBooks([...currentlyReadingBooks, book]);
-    } else if (selectedShelf === 'wantsToReadBooks'){
+    } else if (selectedShelf === 'wantToRead'){
+      book.shelf = selectedShelf;
       setWantsToReadBooks([...wantsToReadBooks, book]);
-    }else if (selectedShelf === 'readBooks'){
-      setReadBokks([...readBooks, book]);
+    }else if (selectedShelf === 'read'){
+      book.shelf = selectedShelf;
+      setReadBooks([...readBooks, book]);
     }
   }
 
-  const removeBookFromPreviousSection = (currentShelf, book) => {
-    if (currentShelf === 'currentlyReadingBooks'){
+  const removeBookFromPreviousSection = (shelf, book) => {
+    if (shelf === 'currentlyReading'){
       const updatedCurrentlyReadingBooks = currentlyReadingBooks.filter((bookInPreviousSection) => (
         bookInPreviousSection.id !== book.id
       ))
       setCurrentlyReadingBooks(updatedCurrentlyReadingBooks);
-    }else if (currentShelf === 'wantsToReadBooks'){
+    }else if (shelf === 'wantToRead'){
       const updatedWantsToReadBooks = wantsToReadBooks.filter((bookInPreviousSection) => (
         bookInPreviousSection.id !== book.id
       ))
       setWantsToReadBooks(updatedWantsToReadBooks);
-    }else if (currentShelf === 'readBooks'){
+    }else if (shelf === 'read'){
       const updatedReadBooks = readBooks.filter((bookInPreviousSection) => (
         bookInPreviousSection.id !== book.id
       ))
-      setReadBokks(updatedReadBooks);
+      setReadBooks(updatedReadBooks);
     }
   }
 
 
   return (
     <div>
-      <BooksLibrary currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/>
-      {/* <SearchBooks updateBooksLibrary={updateBooksLibrary} currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks}/> */}
+      {/* <BooksLibrary currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/> */}
+      <SearchBooks updateBooksLibrary={updateBooksLibrary} currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks}/>
     </div>
   )
 }

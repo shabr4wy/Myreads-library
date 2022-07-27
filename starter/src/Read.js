@@ -10,12 +10,8 @@ const Read = ({readBooks, updateBooksLibrary}) => {
                 {
                     readBooks.map((book)=> (
                         <li key={book.id} >
-                            <Book coverImage={book.coverImage}
-                                    title={book.title}
-                                    authors={book.authors} 
-                                    currentShelf={book.currentShelf}
-                                    id={book.id}
-                                    updateBooksLibrary={updateBooksLibrary}    
+                            <Book book={book}
+                                  updateBooksLibrary={updateBooksLibrary}
                             />
                         </li>
                     ))
