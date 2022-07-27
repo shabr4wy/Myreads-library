@@ -9,11 +9,12 @@ const CurrentlyReading = ({currentlyReadingBooks, updateBooksLibrary}) => {
             <ol className="books-grid">
                 {
                     currentlyReadingBooks.map((book)=> (
-                        <li key="{book.title}" >
+                        <li key={book.id} >
                             <Book coverImage={book.coverImage}
                                     title={book.title}
                                     authors={book.authors}
                                     currentShelf={book.currentShelf}
+                                    id={book.id}
                                     updateBooksLibrary={updateBooksLibrary}     
                             />
                         </li>
