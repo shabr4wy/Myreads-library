@@ -1,11 +1,14 @@
 import "./App.css";
 import BooksLibrary from "./BooksLibrary";
 import SearchBooks from "./SearchBooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as bookAPI from './BooksAPI';
+
 
 
 function App(){
 
+  
   const [currentlyReadingBooks, setCurrentlyReadingBooks] = useState([
     {
       title: 'Pro React',
@@ -15,7 +18,7 @@ function App(){
       id: "PKpPCwAAQBAJ"
     }
   ]);
-
+  
   const [wantsToReadBooks, setWantsToReadBooks] = useState([
     {
       title: "Robotics",
@@ -25,7 +28,7 @@ function App(){
       id: "7n2gw9MbTMUC",
     },
   ]);
-
+  
   const [readBooks, setReadBokks] = useState([
     {
       title: "Learning Virtual Reality",
@@ -36,7 +39,17 @@ function App(){
     }
   ]);
 
+  useEffect (() => {
+    const getAll = async () => {
+      const res = bookAPI.getAll();
+      console.log(res)
+    }
+    getAll();
+  })
+
   const updateBooksLibrary = (currentShelf, selectedShelf, book) => {
+
+    bookAPI.update(book, 'currentlyReadingBooks');
 
     removeBookFromPreviousSection(currentShelf, book)
 
@@ -48,6 +61,7 @@ function App(){
       setReadBokks([...readBooks, book]);
     }
   }
+
 
   const removeBookFromPreviousSection = (currentShelf, book) => {
     if (currentShelf === 'currentlyReadingBooks'){
