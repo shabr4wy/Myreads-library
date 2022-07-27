@@ -18,19 +18,21 @@ function App(){
 
   const [wantsToReadBooks, setWantsToReadBooks] = useState([
     {
-      title: "Pro React",
-      authors: ['Cassio de Sousa Antonio'],
-      coverImage: 'https://books.google.com/books/content?id=uu1mC6zWNTwC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73pGHfBNSsJG9Y8kRBpmLUft9O4BfItHioHolWNKOdLavw-SLcXADy3CPAfJ0_qMb18RmCa7Ds1cTdpM3dxAGJs8zfCfm8c6ggBIjzKT7XR5FIB53HHOhnsT7a0Cc-PpneWq9zX&source=gbs_api',
-      currentShelf: 'wantsToReadBooks'
+      title: "Robotics",
+      authors: ["George A. Bekey"],
+      coverImage: 'http://books.google.com/books/content?id=7n2gw9MbTMUC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+      currentShelf: 'wantsToReadBooks',
+      id: "7n2gw9MbTMUC",
     },
   ]);
 
   const [readBooks, setReadBokks] = useState([
     {
-      title: 'Oh, the Places You\'ll Go!',
-      authors: ['seuss'],
-      coverImage: 'https://books.google.com/books/content?id=1q_xAwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE712CA0cBYP8VKbEcIVEuFJRdX1k30rjLM29Y-dw_qU1urEZ2cQ42La3Jkw6KmzMmXIoLTr50SWTpw6VOGq1leINsnTdLc_S5a5sn9Hao2t5YT7Ax1RqtQDiPNHIyXP46Rrw3aL8&source=gbs_api',
-      currentShelf: 'readBooks'
+      title: "Learning Virtual Reality",
+      authors: ["Tony Parisi"],
+      coverImage: 'http://books.google.com/books/content?id=tXrPCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+      currentShelf: 'readBooks',
+      id: "tXrPCgAAQBAJ",
     }
   ]);
 
