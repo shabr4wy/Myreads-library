@@ -1,7 +1,8 @@
 import "./App.css";
 import BooksLibrary from "./BooksLibrary";
 import SearchBooks from "./SearchBooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as BooksAPI from './BooksAPI';
 
 
 function App(){
@@ -9,7 +10,14 @@ function App(){
   const [currentlyReadingBooks, setCurrentlyReadingBooks] = useState([]);
   const [wantsToReadBooks, setWantsToReadBooks] = useState([]);
   const [readBooks, setReadBokks] = useState([]);
-  
+
+  useEffect (()=> {
+    const getAll = async ()=> {
+      const res = await BooksAPI.getAll();
+      console.log(res)
+    }
+    getAll();
+  }, [])
 
   const updateBooksLibrary = (currentShelf, selectedShelf, book) => {
 
