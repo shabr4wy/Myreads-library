@@ -3,6 +3,7 @@ import BooksLibrary from "./BooksLibrary";
 import SearchBooks from "./SearchBooks";
 import { useState, useEffect } from "react";
 import * as BooksAPI from './BooksAPI';
+import {Route, Routes} from 'react-router-dom'
 
 
 function App(){
@@ -78,10 +79,22 @@ function App(){
 
 
   return (
-    <div>
-      <BooksLibrary currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/>
-      {/* <SearchBooks updateBooksLibrary={updateBooksLibrary} currentlyReadingBooks={currentlyReadingBooks} wantsToReadBooks={wantsToReadBooks} readBooks={readBooks}/> */}
-    </div>
+    <Routes>
+      <Route exact path="/" element={
+        <BooksLibrary currentlyReadingBooks={currentlyReadingBooks}
+                      wantsToReadBooks={wantsToReadBooks} 
+                      readBooks={readBooks} 
+                      updateBooksLibrary={updateBooksLibrary}/>
+      }/>
+      <Route path="/searchPage" element={
+      <SearchBooks updateBooksLibrary={updateBooksLibrary} 
+                   currentlyReadingBooks={currentlyReadingBooks} 
+                   wantsToReadBooks={wantsToReadBooks} 
+                   readBooks={readBooks}/>
+
+      }/>
+    </Routes>
   )
 }
 export default App;
+      
