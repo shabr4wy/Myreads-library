@@ -62,7 +62,7 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
       <div className="search-books-results">
       <ol className="books-grid">
         {
-            searchResults && searchResults.map((book)=> {
+            !searchResults.error ? searchResults.map((book)=> {
               doesItExistsInCurrentlyReadingBooks(book);
               doesItExistsInWantsToReadBooks(book);
               doesItExistsInReadBooks(book);
@@ -74,7 +74,7 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
                   />
                 </li>
               )
-            })
+            }) : <p> not found </p>
         }
       </ol>
       </div>
