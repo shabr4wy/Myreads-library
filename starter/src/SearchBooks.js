@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import Book from './Book';
 import * as bookAPI from './BooksAPI'
+import { Link } from 'react-router-dom';
 
 const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, updateBooksLibrary})=> {
 
@@ -12,8 +13,8 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
           const res = await bookAPI.search(query,10);
           setSearchResults(res);
           console.log(res)
-        }
-        search();
+      }
+      search();
   }, [query])
 
 
@@ -46,11 +47,9 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a
-          className="close-search"
-        >
-          Close
-        </a>
+        <Link to="/" className="close-search">
+          close
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"

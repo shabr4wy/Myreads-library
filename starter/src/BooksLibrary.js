@@ -1,6 +1,7 @@
 import CurrentlyReading from "./CurrentlyReading";
 import Read from "./Read";
 import WantsToRead from "./WantsToRead";
+import { Link } from "react-router-dom";
 
 const BooksLibrary = ({currentlyReadingBooks, wantsToReadBooks, readBooks, updateBooksLibrary}) => {
     return (
@@ -14,7 +15,9 @@ const BooksLibrary = ({currentlyReadingBooks, wantsToReadBooks, readBooks, updat
                 <Read readBooks={readBooks} updateBooksLibrary={updateBooksLibrary}/>
             </div>
             <div className="open-search">
-                <a>Add a book</a>
+                <Link to="/searchPage">
+                    add
+                </Link>
             </div>
         </div>
     )
