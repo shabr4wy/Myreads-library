@@ -8,17 +8,17 @@ const SearchBooks = ({currentlyReadingBooks, wantsToReadBooks, readBooks, update
   const [query, setquery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect (() => {
+  useEffect(() => {
+    if (query) {
       const search = async () => {
-          const res = await bookAPI.search(query,10);
-          setSearchResults(res);
-          console.log(res)
+        const res = await bookAPI.search(query, 10);
+        setSearchResults(res);
       }
       search();
-  }, [query])
+    }else {setSearchResults([])}
+  }, [query]);
 
-
-  let shelf;
+  let shelf; 
 
   const doesItExistsInCurrentlyReadingBooks = (searchedBook) => {
     currentlyReadingBooks.forEach((currentlyReadingBook)=> {
