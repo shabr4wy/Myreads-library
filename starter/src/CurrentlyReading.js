@@ -1,6 +1,6 @@
 import Book from "./Book";
 
-const CurrentlyReading = ({currentlyReadingBooks, updateBooksLibrary}) => {
+const CurrentlyReading = ({booksFromServer, updateBooksLibrary}) => {
     
     return (
         <div className="bookshelf">
@@ -8,7 +8,8 @@ const CurrentlyReading = ({currentlyReadingBooks, updateBooksLibrary}) => {
             <div className="bookshelf-books">
             <ol className="books-grid">
                 {
-                    currentlyReadingBooks.map((book)=> (
+                    booksFromServer.map((book)=> (
+                        book.shelf === 'currentlyReading' &&
                         <li key={book.id} >
                             <Book book={book}
                                   updateBooksLibrary={updateBooksLibrary}
