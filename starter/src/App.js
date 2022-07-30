@@ -17,45 +17,26 @@ const [booksFromServer, setBooksFromServer] = useState([])
     }
     getAll();
   }, [])
-console.log(booksFromServer)
+  
 
+  // the name 'changedOrAddedBook' means if the action was taken on BooksLibrary page,
+  // then the book shelf will be changed.
+  // if the action was taken on searchBooks page,
+  // then it's added to the server and BooksLibrrary.
+  const updateBooksLibrary = (selectedShelf, changedOrAddedBook) => {
 
-  const updateBooksLibrary = (shelf, selectedShelf, book) => {
+    // updating server with the new book
+    BooksAPI.update(changedOrAddedBook, selectedShelf)
 
-    BooksAPI.update(book , selectedShelf)
+    // removing the book form its old shelf
+    const updatedBooks = booksFromServer.filter((book) => (
+      changedOrAddedBook.id !== book.id
+    ))
 
-    // removeBookFromPreviousSection(shelf, book)
-
-    // if (selectedShelf === 'currentlyReading'){
-    //   book.shelf = selectedShelf;
-    //   setCurrentlyReadingBooks([...currentlyReadingBooks, book]);
-    // } else if (selectedShelf === 'wantToRead'){
-    //   book.shelf = selectedShelf;
-    //   setWantsToReadBooks([...wantsToReadBooks, book]);
-    // }else if (selectedShelf === 'read'){
-    //   book.shelf = selectedShelf;
-    //   setReadBooks([...readBooks, book]);
-    // }
+    // adding the book on its new shelf
+    changedOrAddedBook.shelf = selectedShelf;
+    setBooksFromServer([...updatedBooks, changedOrAddedBook])
   }
-
-  // const removeBookFromPreviousSection = (shelf, book) => {
-  //   if (shelf === 'currentlyReading'){
-  //     const updatedCurrentlyReadingBooks = currentlyReadingBooks.filter((bookInPreviousSection) => (
-  //       bookInPreviousSection.id !== book.id
-  //     ))
-  //     setCurrentlyReadingBooks(updatedCurrentlyReadingBooks);
-  //   }else if (shelf === 'wantToRead'){
-  //     const updatedWantsToReadBooks = wantsToReadBooks.filter((bookInPreviousSection) => (
-  //       bookInPreviousSection.id !== book.id
-  //     ))
-  //     setWantsToReadBooks(updatedWantsToReadBooks);
-  //   }else if (shelf === 'read'){
-  //     const updatedReadBooks = readBooks.filter((bookInPreviousSection) => (
-  //       bookInPreviousSection.id !== book.id
-  //     ))
-  //     setReadBooks(updatedReadBooks);
-  //   }
-  // }
 
 
   return (

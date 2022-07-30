@@ -6,7 +6,7 @@ const Book = ({book, updateBooksLibrary}) => {
     const [selectedShelf, setSelectedShelf] = useState('moveTo')
     const hanndleChange = (selectedShelf) => {
         setSelectedShelf(selectedShelf);
-        updateBooksLibrary(book.shelf, selectedShelf, book)
+        updateBooksLibrary(selectedShelf, book)
     }
 
     return (
