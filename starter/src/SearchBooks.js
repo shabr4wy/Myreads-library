@@ -8,6 +8,7 @@ const SearchBooks = ({booksFromServer, updateBooksLibrary})=> {
   const [query, setquery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+  // search the query
   useEffect(() => {
     if (query) {
       const search = async () => {
@@ -19,7 +20,7 @@ const SearchBooks = ({booksFromServer, updateBooksLibrary})=> {
   }, [query]);
 
 
-  const checkIfSearchedBookExistsOnShelf = (searchedBook) => {
+  const checkIfSearchedBookExistsOnTheMainPage = (searchedBook) => {
     booksFromServer.forEach((book) => {
       if (searchedBook.id === book.id){
         searchedBook.shelf = book.shelf;
@@ -47,7 +48,7 @@ const SearchBooks = ({booksFromServer, updateBooksLibrary})=> {
       <ol className="books-grid">
         {
             !searchResults.error ? searchResults.map((book)=> {
-              checkIfSearchedBookExistsOnShelf(book)
+              checkIfSearchedBookExistsOnTheMainPage(book)
               return(
                 <li key={book.id}>
                   <Book book={book}

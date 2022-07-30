@@ -10,6 +10,7 @@ function App(){
 
 const [booksFromServer, setBooksFromServer] = useState([])
 
+  // getting books from the backend 
   useEffect (()=> {
     const getAll = async ()=> {
       const res = await BooksAPI.getAll();
@@ -17,7 +18,7 @@ const [booksFromServer, setBooksFromServer] = useState([])
     }
     getAll();
   }, [])
-  
+
 
   // the name 'changedOrAddedBook' means if the action was taken on BooksLibrary page,
   // then the book shelf will be changed.
