@@ -9,13 +9,27 @@ const Book = ({book, updateBooksLibrary}) => {
         updateBooksLibrary(selectedShelf, book)
     }
 
+    // creating an array to push the 's' after 'http' of the image
+    function convertHttpToHttps() {
+        const imageUrlInArray  = book.imageLinks.smallThumbnail.split('');
+
+        // check first if the Url served in Https or not
+        if(imageUrlInArray[4] !== 's'){
+            imageUrlInArray.splice(4,0,'s');
+            const imageUrlInString = imageUrlInArray.join('');
+            return imageUrlInString
+        }else{
+            return book.imageLinks.smallThumbnail;
+        }
+    }
+
     return (
         <div className="book">
             <div className="book-top">
                 <div className="book-cover">
                     {
                         book.imageLinks ?
-                            <img src={book.imageLinks.smallThumbnail}
+                            <img src={convertHttpToHttps()}
                                  width="128"
                                  height="192"
                             />
