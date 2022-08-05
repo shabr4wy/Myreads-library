@@ -30,6 +30,7 @@ const Book = ({book, updateBooksLibrary}) => {
                     {
                         book.imageLinks ?
                             <img src={convertHttpToHttps()}
+                                 alt={book.title}
                                  width="128"
                                  height="192"
                             />
