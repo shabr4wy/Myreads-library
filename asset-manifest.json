@@ -1,21 +1,16 @@
 {
   "files": {
-    "main.css": "/Myreads-library/static/css/main.ec4c2f0e.chunk.css",
-    "main.js": "/Myreads-library/static/js/main.75aedbf5.chunk.js",
-    "main.js.map": "/Myreads-library/static/js/main.75aedbf5.chunk.js.map",
-    "runtime-main.js": "/Myreads-library/static/js/runtime-main.208b3b5c.js",
-    "runtime-main.js.map": "/Myreads-library/static/js/runtime-main.208b3b5c.js.map",
-    "static/js/2.33cef9c1.chunk.js": "/Myreads-library/static/js/2.33cef9c1.chunk.js",
-    "static/js/2.33cef9c1.chunk.js.map": "/Myreads-library/static/js/2.33cef9c1.chunk.js.map",
+    "main.css": "/Myreads-library/static/css/main.26a42f85.css",
+    "main.js": "/Myreads-library/static/js/main.82522368.js",
     "index.html": "/Myreads-library/index.html",
-    "static/css/main.ec4c2f0e.chunk.css.map": "/Myreads-library/static/css/main.ec4c2f0e.chunk.css.map",
-    "static/js/2.33cef9c1.chunk.js.LICENSE.txt": "/Myreads-library/static/js/2.33cef9c1.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/Myreads-library/static/media/arrow-drop-down.4378492a.svg"
+    "static/media/arrow-back.svg": "/Myreads-library/static/media/arrow-back.cd079cab42defead9875.svg",
+    "static/media/add.svg": "/Myreads-library/static/media/add.1b5d9b6afb5557f7992c.svg",
+    "static/media/arrow-drop-down.svg": "/Myreads-library/static/media/arrow-drop-down.4378492a3a09dbfc31ff.svg",
+    "main.26a42f85.css.map": "/Myreads-library/static/css/main.26a42f85.css.map",
+    "main.82522368.js.map": "/Myreads-library/static/js/main.82522368.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.208b3b5c.js",
-    "static/js/2.33cef9c1.chunk.js",
-    "static/css/main.ec4c2f0e.chunk.css",
-    "static/js/main.75aedbf5.chunk.js"
+    "static/css/main.26a42f85.css",
+    "static/js/main.82522368.js"
   ]
 }
