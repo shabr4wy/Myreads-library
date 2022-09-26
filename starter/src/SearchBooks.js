@@ -10,13 +10,21 @@ const SearchBooks = ({booksFromServer, updateBooksLibrary})=> {
 
   // search the query
   useEffect(() => {
+    let mounted = true;
+
     if (query) {
       const search = async () => {
-        const res = await bookAPI.search(query, 10);
-        setSearchResults(res);
+        await bookAPI.search(query, 10)
+        .then((res) =>
+        mounted && setSearchResults(res)
+        )
       }
       search();
-    }else {setSearchResults([])}
+    }else {
+      setSearchResults([])
+    }
+
+    return () => mounted = false
   }, [query]);
 
 
