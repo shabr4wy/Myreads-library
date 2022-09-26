@@ -32,7 +32,7 @@ const SearchBooks = ({booksFromServer, updateBooksLibrary})=> {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <Link to="/" className="close-search">
+        <Link to="/Myreads-library" className="close-search">
           close
         </Link>
         <div className="search-books-input-wrapper">

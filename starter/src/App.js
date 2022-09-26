@@ -42,7 +42,7 @@ const [booksFromServer, setBooksFromServer] = useState([])
 
   return (
     <Routes>
-      <Route exact path="/" element={
+      <Route exact path="/Myreads-library" element={
         <BooksLibrary booksFromServer={booksFromServer}
                       updateBooksLibrary={updateBooksLibrary}
                       />
